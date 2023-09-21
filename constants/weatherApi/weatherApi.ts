@@ -1,6 +1,11 @@
 import {weatherAxiosInstance, yandexAxiosInstance} from '../axios';
 
-export const fetchWeatherOrg = () =>
+export const fetchWeatherOrg = (params: IWeatherDataParams) =>
   yandexAxiosInstance.get(
-    'https://api.weather.yandex.ru/v2/forecast?lat=55.75396&lon=37.620393&extra=true',
+    `/forecast?lat=${params.lat}&lon=${params.lon}&extra=true`,
+  );
+
+export const searchCities = (query: string) =>
+  weatherAxiosInstance.get(
+    `https://geocoding-api.open-meteo.com/v1/search?name=${query}`,
   );

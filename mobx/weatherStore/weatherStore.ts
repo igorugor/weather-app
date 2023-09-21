@@ -2,24 +2,33 @@ import {makeAutoObservable, runInAction} from 'mobx';
 import {fetchWeatherOrg} from '../../constants/weatherApi/weatherApi';
 
 class WeatherStore {
-  weatherState = {};
+  weatherState: IWeatherObj | null = null;
   pending = false;
+  error: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getWeatherData = async () => {
-    runInAction(() => {
-      this.pending = true;
-    });
+  setError = (value: string | null) => {
+    this.error = value;
+  };
 
-    const {data} = await fetchWeatherOrg();
+  getWeatherData = async (params: IWeatherDataParams) => {
+    try {
+      runInAction(() => {
+        this.pending = true;
+      });
 
-    runInAction(() => {
-      this.weatherState = data;
-      this.pending = false;
-    });
+      const {data} = await fetchWeatherOrg(params);
+
+      runInAction(() => {
+        this.weatherState = data;
+        this.pending = false;
+      });
+    } catch (e: any) {
+      this.setError(JSON.stringify(e));
+    }
   };
 }
 

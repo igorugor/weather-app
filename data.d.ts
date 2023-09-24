@@ -114,6 +114,7 @@ interface IWeatherObj {
     phenom_icon: string;
     soil_moisture: number;
     soil_temp: number;
+    icon: string;
   };
   geo_object: {
     country: GeoObject;

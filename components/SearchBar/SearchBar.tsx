@@ -1,5 +1,11 @@
 import React from 'react';
-import {Text, TextInput, View, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {useSearchBar} from './use_SearchBar';
@@ -17,37 +23,44 @@ export const SearchBar = observer(() => {
     searchText,
     handleGetWeatherForecast,
     isVisible,
+    inputRef,
   } = useSearchBar();
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
+          ref={inputRef}
           style={styles.textInput}
           onChangeText={handleSetSearchText}
           value={searchText}
-          placeholder="Вводите название города"
-          placeholderTextColor={'#FFF'}
+          placeholder="Search for cities..."
+          placeholderTextColor="#fff"
         />
         <View style={styles.searchButton}>
           <FontAwesomeIcons name="search" color="#fff" size={20} />
         </View>
       </View>
 
-      {!error &&
-        isVisible &&
-        citiesList?.map(city => (
-          <TouchableOpacity
-            key={city.id}
-            style={styles.listElement}
-            onPress={() => {
-              handleGetWeatherForecast(city);
-            }}>
-            <Text style={styles.listElementText}>
-              {city.name} , {city.country}
-            </Text>
-          </TouchableOpacity>
-        ))}
+      <View style={styles.citiesListContainer}>
+        <ScrollView>
+          {!error &&
+            isVisible &&
+            citiesList?.map(city => (
+              <TouchableOpacity
+                activeOpacity={0.7}
+                key={city.id}
+                style={styles.listElement}
+                onPress={() => {
+                  handleGetWeatherForecast(city);
+                }}>
+                <Text style={styles.listElementText}>
+                  {city.name}, {city.country}
+                </Text>
+              </TouchableOpacity>
+            ))}
+        </ScrollView>
+      </View>
       {error && (
         <View style={styles.listElement}>
           <Text style={styles.listElementText}>{error}</Text>

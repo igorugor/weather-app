@@ -1,9 +1,12 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {citiesStore} from '../../mobx/citiesStore/citiesStore';
 import {weatherStore} from '../../mobx/weatherStore/weatherStore';
+import {TextInput} from 'react-native';
 
 export const useSearchBar = () => {
   const {citiesList, error, pending, getCitiesList} = citiesStore;
+
+  const inputRef = useRef<TextInput>();
 
   const {getWeatherData} = weatherStore;
 
@@ -22,6 +25,7 @@ export const useSearchBar = () => {
 
   const handleGetWeatherForecast = (city: ICityListObj) => {
     setIsVisible(false);
+    inputRef.current?.blur();
     handleSetSearchText(city.name);
     getWeatherData({
       lat: city.latitude,
@@ -43,5 +47,6 @@ export const useSearchBar = () => {
     setIsVisible,
     isVisible,
     handleGetWeatherForecast,
+    inputRef,
   };
 };

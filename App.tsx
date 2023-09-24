@@ -1,19 +1,30 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, Image} from 'react-native';
 import {MainScreen} from './screens/MainScreen/MainScreen';
-import LinearGradient from 'react-native-linear-gradient';
+import {weatherStore} from './mobx/weatherStore/weatherStore';
+import {ProggressBar} from './components/ProggressBar/ProggressBar';
 
 export default function App() {
   StatusBar.setBarStyle('light-content');
 
+  const {pending} = weatherStore;
+
+  if (pending) {
+    return <ProggressBar />;
+  }
+
   return (
-    <LinearGradient
-      colors={['#120045', '#51a0ff', '#00378a']}
-      style={styles.linearGradient}>
+    <>
+      <Image
+        style={styles.background}
+        source={require('./assets/backgrounds/photo-1536510657370-18a343d1bf8d.jpeg')}
+        resizeMode="cover"
+        blurRadius={50}
+      />
       <SafeAreaView style={styles.container}>
         <MainScreen />
       </SafeAreaView>
-    </LinearGradient>
+    </>
   );
 }
 
@@ -22,4 +33,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   linearGradient: {flex: 1},
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  },
 });

@@ -14,18 +14,21 @@ class WeatherStore {
     this.error = value;
   };
 
+  setPending = (value: boolean) => {
+    this.pending = value;
+  };
+
   getWeatherData = async (params: IWeatherDataParams) => {
     try {
-      runInAction(() => {
-        this.pending = true;
-      });
+      this.setPending(true);
 
       const {data} = await fetchWeatherOrg(params);
 
       runInAction(() => {
         this.weatherState = data;
-        this.pending = false;
       });
+
+      this.setPending(false);
     } catch (e: any) {
       this.setError(JSON.stringify(e));
     }

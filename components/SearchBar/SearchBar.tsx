@@ -23,23 +23,32 @@ export const SearchBar = observer(() => {
     searchText,
     handleGetWeatherForecast,
     isVisible,
+    isInputShown,
+    handleIsInputShown,
     inputRef,
   } = useSearchBar();
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput
-          ref={inputRef}
-          style={styles.textInput}
-          onChangeText={handleSetSearchText}
-          value={searchText}
-          placeholder="Search for cities..."
-          placeholderTextColor="#fff"
-        />
-        <View style={styles.searchButton}>
-          <FontAwesomeIcons name="search" color="#fff" size={20} />
-        </View>
+        {isInputShown ? (
+          <TextInput
+            ref={inputRef}
+            style={styles.textInput}
+            onChangeText={handleSetSearchText}
+            value={searchText}
+            placeholder="Search for cities..."
+            placeholderTextColor="#fff"
+          />
+        ) : null}
+        <TouchableOpacity
+          style={styles.searchButton}
+          activeOpacity={0.7}
+          onPress={() => {
+            handleIsInputShown(!isInputShown);
+          }}>
+          <FontAwesomeIcons name="search" color="#fff" size={27} />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.citiesListContainer}>
@@ -54,18 +63,19 @@ export const SearchBar = observer(() => {
                 onPress={() => {
                   handleGetWeatherForecast(city);
                 }}>
+                <FontAwesomeIcons name="map-marker" color="#fff" size={16} />
                 <Text style={styles.listElementText}>
                   {city.name}, {city.country}
                 </Text>
               </TouchableOpacity>
             ))}
         </ScrollView>
+        {error && (
+          <View style={styles.listElement}>
+            <Text style={styles.listElementText}>{error}</Text>
+          </View>
+        )}
       </View>
-      {error && (
-        <View style={styles.listElement}>
-          <Text style={styles.listElementText}>{error}</Text>
-        </View>
-      )}
     </View>
   );
 });

@@ -6,7 +6,7 @@ export const useStyle = () => {
       alignItems: 'center',
       justifyContent: 'space-between',
       flexDirection: 'column',
-      paddingTop: 35,
+      paddingTop: 20,
     },
     temperature: {
       fontSize: 36,
@@ -26,8 +26,8 @@ export const useStyle = () => {
     },
     celciusIcon: {
       position: 'absolute',
-      top: '20%',
-      right: '-5%',
+      top: 10,
+      right: -15,
       width: 15,
       height: 15,
       borderRadius: 50,
@@ -49,6 +49,8 @@ export const useStyle = () => {
       justifyContent: 'center',
       alignItems: 'center',
       flexDirection: 'row',
+      flexWrap: 'wrap',
+      marginBottom: 15,
     },
 
     extraData: {

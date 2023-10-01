@@ -25,9 +25,9 @@ export const GeneralWeatherData = observer(() => {
       <View style={styles.generalDataContainer}>
         <View style={styles.cityTitleContainer}>
           <TextDefault bold fontSize={24}>
-            {geo_object.locality.name}
+            {geo_object?.locality?.name ?? geo_object?.country?.name}
           </TextDefault>
-          <TextDefault>{`, ${geo_object.country.name}`}</TextDefault>
+          <TextDefault>{`, ${geo_object?.country?.name}`}</TextDefault>
         </View>
         <View style={styles.imageContainer}>
           <SvgUri

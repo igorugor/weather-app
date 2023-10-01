@@ -117,6 +117,7 @@ interface IWeatherObj {
     icon: string;
   };
   geo_object: {
+    province: GeoObject;
     country: GeoObject;
     locality: GeoObject;
   };

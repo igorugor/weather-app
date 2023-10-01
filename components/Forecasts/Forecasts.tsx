@@ -50,6 +50,7 @@ export const Forecasts = observer(() => {
                 </View>
               </View>
             </View>
+
             <View style={styles.forecastPart}>
               <View style={styles.imageContainer}>
                 <SvgUri

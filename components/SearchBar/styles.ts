@@ -2,12 +2,19 @@ import {StyleSheet} from 'react-native';
 
 export const useStyle = () => {
   return StyleSheet.create({
+    flex: {
+      flex: 1,
+    },
     container: {
       position: 'relative',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 25,
-      zIndex: 9999,
+      paddingHorizontal: 25,
+      paddingTop: 25,
+      zIndex: 10,
+    },
+    IOSPadding: {
+      paddingTop: 55,
     },
     inputContainer: {
       flex: 1,
@@ -22,21 +29,24 @@ export const useStyle = () => {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      top: 'auto',
+      top: 0,
       right: -5,
       backgroundColor: 'grey',
       padding: 8,
       borderRadius: 50,
     },
     textInput: {
-      height: 40,
+      marginTop: 5,
+      height: 45,
       width: '100%',
-      margin: 12,
       borderWidth: 2,
       paddingHorizontal: 20,
       borderRadius: 10,
       borderColor: 'grey',
       color: '#fff',
+    },
+    IOSMargin: {
+      marginTop: 55,
     },
     listElement: {
       flex: 1,
@@ -60,10 +70,18 @@ export const useStyle = () => {
 
     citiesListContainer: {
       position: 'absolute',
-      top: 50,
+      top: '15%',
       width: '100%',
       backgroundColor: 'black',
       borderRadius: 50,
+    },
+
+    cityTitleContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      marginTop: 50,
     },
   });
 };

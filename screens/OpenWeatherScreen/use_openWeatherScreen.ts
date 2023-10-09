@@ -3,21 +3,21 @@ import {weatherStore} from '../../mobx/weatherStore/weatherStore';
 import {getData} from '../../constants/asyncStorage';
 import React, {useEffect} from 'react';
 
-export const useMainScreen = () => {
+export const useOpenWeatherScreen = () => {
   StatusBar.setBarStyle('light-content');
 
-  const {pending, getWeatherData, weatherState} = weatherStore;
+  const {pending, getOpenWeatherData, openWeatherState} = weatherStore;
 
   const retreiveData = async () => {
     const coords = await getData('coordinates');
 
     if (coords) {
-      getWeatherData({
+      getOpenWeatherData({
         lat: coords.lat,
         lon: coords.lon,
       });
     } else {
-      getWeatherData({
+      getOpenWeatherData({
         lat: 55,
         lon: 50,
       });
@@ -35,6 +35,6 @@ export const useMainScreen = () => {
   return {
     onRefresh,
     pending,
-    weatherState,
+    openWeatherState,
   };
 };

@@ -59,13 +59,21 @@ interface ICityListObj {
 
 interface IForecast {
   date: string;
-  moon_code: 11;
+  moon_code: number;
   parts: {
     day: IForecastPart;
     night: IForecastPart;
   };
   rise_begin: string;
   sunset: string;
+}
+
+interface IForecastProps {
+  dayIcon: string;
+  nightIcon: string;
+  date: number | string;
+  dayTemp: number;
+  nightTemp: number;
 }
 
 interface IForecastPart {
@@ -128,4 +136,38 @@ interface IWeatherObj {
 interface IWeatherDataParams {
   lat: number;
   lon: number;
+}
+
+interface IOpenWeatherWeather {
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
+}
+
+type IOpenWeatherDailyForecast = Array<{
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  moonrise: number;
+  moonset: number;
+  temp: {
+    max: number;
+    min: number;
+  };
+  weather: IOpenWeatherWeather[];
+}>;
+
+interface IOpenWeatherForecastObj {
+  lan: number;
+  lon: number;
+  current: {
+    temp: number;
+    pressure: number;
+    humidity: number;
+    clouds: number;
+    wind_speed: number;
+    weather: IOpenWeatherWeather[];
+  };
+  daily: IOpenWeatherDailyForecast;
 }

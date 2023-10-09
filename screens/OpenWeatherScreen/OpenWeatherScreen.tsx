@@ -13,17 +13,18 @@ import {useStyles} from './styles';
 import {GeneralWeatherData} from '../../components/GeneralWeatherData/GeneralWeatherData';
 import {Forecasts} from '../../components/Forecasts/Forecasts';
 import {ProggressBar} from '../../components/ProggressBar/ProggressBar';
-import {useMainScreen} from './use_MainScreen';
+import {useOpenWeatherScreen} from './use_openWeatherScreen';
 
-export const MainScreen = observer(() => {
+export const OpenWeatherScreen = observer(() => {
   const styles = useStyles();
-  const {onRefresh, pending, weatherState} = useMainScreen();
 
-  if (!weatherState) {
+  const {onRefresh, openWeatherState, pending} = useOpenWeatherScreen();
+
+  if (!openWeatherState) {
     return null;
   }
 
-  const {fact, forecasts} = weatherState;
+  const {current, daily} = openWeatherState;
 
   return (
     <>
@@ -34,19 +35,19 @@ export const MainScreen = observer(() => {
           <KeyboardAvoidingView style={styles.container}>
             <ScrollView
               nestedScrollEnabled={true}
+              contentContainerStyle={styles.scrollContainer}
               refreshControl={
                 <RefreshControl refreshing={pending} onRefresh={onRefresh} />
-              }
-              contentContainerStyle={styles.scrollContainer}>
+              }>
               <GeneralWeatherData
-                condition={fact.condition}
-                humidity={fact.humidity}
-                temp={fact.temp}
-                weatherIcon={`https://yastatic.net/weather/i/icons/funky/dark/${fact.icon}.svg`}
-                windSpeed={fact.wind_speed}
-                tag="Yandex"
+                condition={current.weather[0].description}
+                humidity={current.humidity}
+                temp={current.temp}
+                weatherIcon={`https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`}
+                windSpeed={current.wind_speed}
+                tag="OpenWeather"
               />
-              <Forecasts forecasts={forecasts} tag="Yandex" />
+              <Forecasts forecasts={daily} tag="OpenWeather" />
             </ScrollView>
           </KeyboardAvoidingView>
         </SafeAreaView>

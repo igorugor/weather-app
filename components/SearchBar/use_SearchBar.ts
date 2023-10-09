@@ -9,11 +9,20 @@ export const useSearchBar = () => {
 
   const inputRef = useRef<TextInput>();
 
-  const {getWeatherData} = weatherStore;
+  const {getWeatherData, weatherState} = weatherStore;
 
   const [searchText, setSearchText] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [isInputShown, setIsInputShown] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleShowModal = () => {
+    setModalVisible(true);
+  };
+
+  const handleHideModal = () => {
+    setModalVisible(false);
+  };
 
   const handleSetSearchText = (value: string) => {
     if (!isVisible) {
@@ -28,6 +37,7 @@ export const useSearchBar = () => {
   const handleGetWeatherForecast = (city: ICityListObj) => {
     setIsVisible(false);
     setIsInputShown(false);
+    handleHideModal();
     inputRef.current?.blur();
     handleSetSearchText(city.name);
     getWeatherData({
@@ -43,9 +53,11 @@ export const useSearchBar = () => {
 
   const handleIsInputShown = (value: boolean) => {
     setIsInputShown(value);
+    inputRef.current?.focus();
 
     if (!value) {
       setIsVisible(false);
+      inputRef.current?.blur();
     }
   };
 
@@ -66,5 +78,10 @@ export const useSearchBar = () => {
     inputRef,
     handleIsInputShown,
     isInputShown,
+    setIsInputShown,
+    weatherState,
+    handleShowModal,
+    handleHideModal,
+    isModalVisible,
   };
 };

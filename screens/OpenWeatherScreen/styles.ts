@@ -8,11 +8,11 @@ export const useStyles = () => {
     },
     appcontainer: {
       flex: 1,
+      justifyContent: 'space-between',
     },
     scrollContainer: {
       justifyContent: 'space-between',
       flex: 1,
-      gap: 20,
     },
   });
 };

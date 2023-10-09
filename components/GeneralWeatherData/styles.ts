@@ -6,7 +6,6 @@ export const useStyle = () => {
       alignItems: 'center',
       justifyContent: 'space-between',
       flexDirection: 'column',
-      paddingTop: 20,
     },
     temperature: {
       fontSize: 36,

@@ -3,8 +3,6 @@ import {StyleSheet} from 'react-native';
 export const useStyle = () => {
   return StyleSheet.create({
     forecastContainer: {
-      position: 'absolute',
-      bottom: 0,
       alignItems: 'flex-start',
     },
     title: {
@@ -47,8 +45,8 @@ export const useStyle = () => {
       borderColor: '#fff',
     },
     imageContainer: {
-      width: 35,
-      height: 35,
+      width: 50,
+      height: 50,
       marginBottom: 10,
       borderRadius: 50,
     },

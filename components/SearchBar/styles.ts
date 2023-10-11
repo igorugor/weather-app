@@ -70,7 +70,7 @@ export const useStyle = () => {
 
     citiesListContainer: {
       position: 'absolute',
-      top: '15%',
+      top: 60,
       width: '100%',
       backgroundColor: 'black',
       borderRadius: 50,
@@ -81,7 +81,7 @@ export const useStyle = () => {
       alignItems: 'center',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      marginTop: 50,
+      marginTop: 60,
     },
   });
 };

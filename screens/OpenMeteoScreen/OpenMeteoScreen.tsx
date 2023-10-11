@@ -13,17 +13,18 @@ import {useStyles} from './styles';
 import {GeneralWeatherData} from '../../components/GeneralWeatherData/GeneralWeatherData';
 import {Forecasts} from '../../components/Forecasts/Forecasts';
 import {ProggressBar} from '../../components/ProggressBar/ProggressBar';
-import {useMainScreen} from './use_MainScreen';
+import {useOpenMeteoScreen} from './use_openMeteoScreen';
 
-export const MainScreen = observer(() => {
+export const OpenMeteoScreen = observer(() => {
   const styles = useStyles();
-  const {onRefresh, pending, weatherState} = useMainScreen();
 
-  if (!weatherState) {
+  const {onRefresh, openMeteoState, pending} = useOpenMeteoScreen();
+
+  if (!openMeteoState) {
     return null;
   }
 
-  const {fact, forecasts} = weatherState;
+  const {current, daily} = openMeteoState;
 
   return (
     <>
@@ -34,19 +35,19 @@ export const MainScreen = observer(() => {
           <KeyboardAvoidingView style={styles.container}>
             <ScrollView
               nestedScrollEnabled={true}
+              contentContainerStyle={styles.scrollContainer}
               refreshControl={
                 <RefreshControl refreshing={pending} onRefresh={onRefresh} />
-              }
-              contentContainerStyle={styles.scrollContainer}>
+              }>
               <GeneralWeatherData
-                condition={fact.condition}
-                humidity={fact.humidity}
-                temp={fact.temp}
-                weatherIcon={fact.icon}
-                windSpeed={fact.wind_speed}
-                tag="Yandex"
+                condition={'placeholder'}
+                humidity={current.relativehumidity_2m}
+                temp={current.temperature_2m}
+                weatherIcon={`01d`}
+                windSpeed={current.windspeed_10m}
+                tag="OpenWeather"
               />
-              <Forecasts forecasts={forecasts} tag="Yandex" />
+              <Forecasts forecasts={daily} tag="OpenWeather" />
             </ScrollView>
           </KeyboardAvoidingView>
         </SafeAreaView>

@@ -26,8 +26,9 @@ export const useStyle = () => {
       height: 150,
       margin: 10,
       backgroundColor: '#0124',
+      paddingHorizontal: 5,
       borderRadius: 15,
-      gap: 15,
+      gap: 10,
     },
     tempContainer: {
       position: 'relative',

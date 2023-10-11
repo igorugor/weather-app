@@ -10,6 +10,8 @@ import {useStyle} from './styles';
 import {SvgUri} from 'react-native-svg';
 import {observer} from 'mobx-react';
 
+import {localStrings} from '../../constants/localization';
+
 interface IForecasts {
   forecasts: IForecastProps[];
   tag: 'Yandex' | 'OpenWeather';
@@ -24,31 +26,11 @@ export const Forecasts: React.FC<IForecasts> = observer(({forecasts, tag}) => {
     return null;
   }
 
-  //const {forecasts} = weatherState;
-
-  // const {daily} = openWeatherState;
-
-  // const t = daily.map(fc => ({
-  //   date: fc.dt,
-  //   dayIcon: fc.weather[0].icon,
-  //   nightIcon: fc.weather[0].icon,
-  //   dayTemp: fc.temp.max,
-  //   nightTemp: fc.temp.min,
-  // }));
-
-  // const f = forecasts.map(fc => ({
-  //   date: fc.date,
-  //   dayIcon: fc.parts.day.icon,
-  //   nightIcon: fc.parts.night.icon,
-  //   dayTemp: fc.parts.day.temp_max,
-  //   nightTemp: fc.parts.night.temp_max,
-  // }));
-
   return (
     <View style={styles.forecastContainer}>
       <View style={styles.title}>
         <FontAwesomeIcons name="calendar" color="#fff" size={20} />
-        <TextDefault fontSize={20}>Daily forecast</TextDefault>
+        <TextDefault fontSize={20}>{localStrings.dailyForecast}</TextDefault>
       </View>
       <ScrollView horizontal contentContainerStyle={styles.forecasts}>
         {forecasts.map(forecast => (
@@ -58,25 +40,29 @@ export const Forecasts: React.FC<IForecasts> = observer(({forecasts, tag}) => {
                 {tag === 'OpenWeather' ? (
                   <Image
                     source={{
-                      uri: `https://openweathermap.org/img/wn/${forecast.dayIcon}@2x.png`,
+                      uri: `https://openweathermap.org/img/wn/${
+                        forecast.dayIcon.length > 0 ? forecast.dayIcon : '01d'
+                      }@2x.png`,
                     }}
                     width="100%"
                     height="100%"
+                    alt=";/"
                   />
                 ) : (
                   <SvgUri
                     uri={`https://yastatic.net/weather/i/icons/funky/dark/${forecast.dayIcon}.svg`}
                     width="100%"
                     height="100%"
+                    alt=";/"
                   />
                 )}
               </View>
               <View style={styles.forecastPartTemp}>
                 <TextDefault fontSize={20}>
-                  {moment(forecast.date).utc().format('dddd')}
+                  {localStrings[moment(forecast.date).utc().format('dddd')]}
                 </TextDefault>
                 <View style={styles.tempContainer}>
-                  <TextDefault bold fontSize={25}>
+                  <TextDefault bold fontSize={22}>
                     {forecast.dayTemp}
                   </TextDefault>
                   <View style={styles.celciusIcon} />
@@ -89,7 +75,11 @@ export const Forecasts: React.FC<IForecasts> = observer(({forecasts, tag}) => {
                 {tag === 'OpenWeather' ? (
                   <Image
                     source={{
-                      uri: `https://openweathermap.org/img/wn/${forecast.nightIcon}@2x.png`,
+                      uri: `https://openweathermap.org/img/wn/${
+                        forecast.nightIcon.length > 0
+                          ? forecast.nightIcon
+                          : '01d'
+                      }@2x.png`,
                     }}
                     width="100%"
                     height="100%"
@@ -104,7 +94,7 @@ export const Forecasts: React.FC<IForecasts> = observer(({forecasts, tag}) => {
               </View>
               <View style={styles.forecastPartTemp}>
                 <View style={styles.tempContainer}>
-                  <TextDefault bold fontSize={25}>
+                  <TextDefault bold fontSize={22}>
                     {forecast.nightTemp}
                   </TextDefault>
                   <View style={styles.celciusIcon} />

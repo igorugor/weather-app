@@ -15,6 +15,7 @@ import {useStyle} from './styles';
 import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
 import {TextDefault} from '../TextDefault/TextDefault';
 import Modal from 'react-native-modal';
+import {localStrings} from '../../constants/localization';
 
 export const SearchBar = observer(() => {
   const styles = useStyle();
@@ -91,7 +92,7 @@ export const SearchBar = observer(() => {
                 setIsVisible(false);
               }}
               value={searchText}
-              placeholder="Search for cities..."
+              placeholder={localStrings.searchCities}
               placeholderTextColor="#fff"
             />
 

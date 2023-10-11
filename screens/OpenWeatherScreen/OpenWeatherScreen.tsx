@@ -40,10 +40,10 @@ export const OpenWeatherScreen = observer(() => {
                 <RefreshControl refreshing={pending} onRefresh={onRefresh} />
               }>
               <GeneralWeatherData
-                condition={current.weather[0].description}
+                condition={current.weather[0].main}
                 humidity={current.humidity}
                 temp={current.temp}
-                weatherIcon={`https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`}
+                weatherIcon={current.weather[0].icon}
                 windSpeed={current.wind_speed}
                 tag="OpenWeather"
               />

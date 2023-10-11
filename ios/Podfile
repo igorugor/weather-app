@@ -52,10 +52,6 @@ target 'WeatherApp' do
     # Pods for testing
   end
 
-  pre_install do |installer|
-    $RNMapboxMaps.pre_install(installer)
-  end
-
   post_install do |installer|
     # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
@@ -63,8 +59,6 @@ target 'WeatherApp' do
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
-
-    $RNMapboxMaps.post_install(installer)
 
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end

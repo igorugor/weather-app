@@ -74,15 +74,6 @@ PODS:
     - hermes-engine/Pre-built (= 0.72.4)
   - hermes-engine/Pre-built (0.72.4)
   - libevent (2.1.12)
-  - MapboxCommon (23.8.0)
-  - MapboxCoreMaps (10.16.0):
-    - MapboxCommon (~> 23.8)
-  - MapboxMaps (10.16.0):
-    - MapboxCommon (= 23.8.0)
-    - MapboxCoreMaps (= 10.16.0)
-    - MapboxMobileEvents (= 1.0.10)
-    - Turf (~> 2.0)
-  - MapboxMobileEvents (1.0.10)
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -498,19 +489,10 @@ PODS:
     - React-jsi (= 0.72.4)
     - React-logger (= 0.72.4)
     - React-perflogger (= 0.72.4)
+  - ReactNativeLocalization (2.3.2):
+    - React-Core
   - RNCAsyncStorage (1.19.3):
     - React-Core
-  - rnmapbox-maps (10.0.15):
-    - MapboxMaps (~> 10.16.0)
-    - React
-    - React-Core
-    - rnmapbox-maps/DynamicLibrary (= 10.0.15)
-    - Turf
-  - rnmapbox-maps/DynamicLibrary (10.0.15):
-    - MapboxMaps (~> 10.16.0)
-    - React
-    - React-Core
-    - Turf
   - RNScreens (3.25.0):
     - React-Core
     - React-RCTImage
@@ -519,7 +501,6 @@ PODS:
   - RNVectorIcons (10.0.0):
     - React-Core
   - SocketRocket (0.6.1)
-  - Turf (2.7.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -589,8 +570,8 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - ReactNativeLocalization (from `../node_modules/react-native-localization`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
-  - "rnmapbox-maps (from `../node_modules/@rnmapbox/maps`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -609,13 +590,8 @@ SPEC REPOS:
     - FlipperKit
     - fmt
     - libevent
-    - MapboxCommon
-    - MapboxCoreMaps
-    - MapboxMaps
-    - MapboxMobileEvents
     - OpenSSL-Universal
     - SocketRocket
-    - Turf
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -700,10 +676,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  ReactNativeLocalization:
+    :path: "../node_modules/react-native-localization"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
-  rnmapbox-maps:
-    :path: "../node_modules/@rnmapbox/maps"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -731,10 +707,6 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 81191603c4eaa01f5e4ae5737a9efcf64756c7b2
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  MapboxCommon: 8592a003eae487508461d452d62cfc5906a9682a
-  MapboxCoreMaps: faa14a797417dc32088c98019a3ce72e46cda5cd
-  MapboxMaps: f10aecadbfb7cf96368852ca313101eb4171da53
-  MapboxMobileEvents: de50b3a4de180dd129c326e09cd12c8adaaa46d6
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: c0569ecc035894e4a68baecb30fe6a7ea6e399f9
@@ -770,16 +742,15 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 4941cc1b3cf08b792fbf666342c9fc95f1969035
   React-utils: b79f2411931f9d3ea5781404dcbb2fa8a837e13a
   ReactCommon: 4b2bdcb50a3543e1c2b2849ad44533686610826d
+  ReactNativeLocalization: fb171138cdc80d5d0d4f20243d2fc82c2b3cc48f
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
-  rnmapbox-maps: b6219b7432508ae2cea169365116a811f822612e
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   RNSVG: ed492aaf3af9ca01bc945f7a149d76d62e73ec82
   RNVectorIcons: 8b5bb0fa61d54cd2020af4f24a51841ce365c7e9
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  Turf: 13d1a92d969ca0311bbc26e8356cca178ce95da2
   Yoga: 3efc43e0d48686ce2e8c60f99d4e6bd349aff981
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: b9a84294bc70c74a36b9974154d4c61024d9d41f
+PODFILE CHECKSUM: 883a4e4d8865edff386daa64985fbcd5539848c9
 
 COCOAPODS: 1.12.1

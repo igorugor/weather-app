@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
@@ -7,9 +7,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import {MainScreen} from './screens/MainScreen/MainScreen';
 import {OpenWeatherScreen} from './screens/OpenWeatherScreen/OpenWeatherScreen';
 import {SearchBar} from './components/SearchBar/SearchBar';
-import Modal from 'react-native-modal';
-import {TextDefault} from './components/TextDefault/TextDefault';
-import {weatherStore} from './mobx/weatherStore/weatherStore';
+import {OpenMeteoScreen} from './screens/OpenMeteoScreen/OpenMeteoScreen';
 
 export default function App() {
   const Tab = createMaterialTopTabNavigator();
@@ -34,6 +32,7 @@ export default function App() {
         }}>
         <Tab.Screen name="Yandex" component={MainScreen} />
         <Tab.Screen name="OpenWeather" component={OpenWeatherScreen} />
+        <Tab.Screen name="OpenMeteo" component={OpenMeteoScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

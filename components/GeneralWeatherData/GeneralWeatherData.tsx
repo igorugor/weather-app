@@ -7,6 +7,7 @@ import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome5';
 
 import {useStyle} from './styles';
 import {TextDefault} from '../TextDefault/TextDefault';
+import {localStrings} from '../../constants/localization';
 
 interface IGeneralWeatherData {
   weatherIcon: string;
@@ -28,13 +29,17 @@ export const GeneralWeatherData: React.FC<IGeneralWeatherData> = observer(
             {tag === 'OpenWeather' ? (
               <Image
                 source={{
-                  uri: weatherIcon,
+                  uri: `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`,
                 }}
                 width="100%"
                 height="100%"
               />
             ) : (
-              <SvgUri uri={weatherIcon} width="100%" height="100%" />
+              <SvgUri
+                uri={`https://yastatic.net/weather/i/icons/funky/dark/${weatherIcon}.svg`}
+                width="100%"
+                height="100%"
+              />
             )}
           </View>
 
@@ -44,7 +49,7 @@ export const GeneralWeatherData: React.FC<IGeneralWeatherData> = observer(
             </TextDefault>
             <View style={styles.celciusIcon} />
           </View>
-          <TextDefault>{condition}</TextDefault>
+          <TextDefault>{`${localStrings[condition]}`}</TextDefault>
           <View style={styles.extraData}>
             <View style={styles.extraItem}>
               <FontAwesomeIcons name="wind" color="#fff" size={20} />

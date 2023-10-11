@@ -9,7 +9,8 @@ export const useSearchBar = () => {
 
   const inputRef = useRef<TextInput>();
 
-  const {getWeatherData, weatherState} = weatherStore;
+  const {getWeatherData, weatherState, getOpenMeteoData, getOpenWeatherData} =
+    weatherStore;
 
   const [searchText, setSearchText] = useState('');
   const [isVisible, setIsVisible] = useState(false);
@@ -41,6 +42,16 @@ export const useSearchBar = () => {
     inputRef.current?.blur();
     handleSetSearchText(city.name);
     getWeatherData({
+      lat: city.latitude,
+      lon: city.longitude,
+    });
+
+    getOpenMeteoData({
+      lat: city.latitude,
+      lon: city.longitude,
+    });
+
+    getOpenWeatherData({
       lat: city.latitude,
       lon: city.longitude,
     });

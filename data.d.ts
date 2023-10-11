@@ -171,3 +171,26 @@ interface IOpenWeatherForecastObj {
   };
   daily: IOpenWeatherDailyForecast;
 }
+
+interface IOpenMeteoObj {
+  current: {
+    time: number;
+    temperature_2m: number;
+    relative_humidity_2m: number;
+    precipitation: number;
+    rain: number;
+    showers: number;
+    snowfall: number;
+    windspeed_10m: number;
+  };
+  daily: {
+    time: number[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+    precipitation_sum: number[];
+    rain_sum: number[];
+    showers_sum: number[];
+    snowfall_sum: number[];
+    windspeed_10m_max: number[];
+  };
+}
